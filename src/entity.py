@@ -19,3 +19,8 @@ class DataTransformationConfig:
     data_path : str
     tokenizer_name : str
 
+@dataclass
+class ModelTrainerConfig:
+    root_dir : str
+    data_path : str
+    model_ckpt : str

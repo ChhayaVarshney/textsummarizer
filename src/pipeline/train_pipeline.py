@@ -2,18 +2,18 @@ from src.configuration import ConfigurationManager
 from src.components.data_ingestion import DataIngestion
 from src.components.data_validation import DataValidation
 from src.components.data_transformation import DataTransformation
+from src.components.model_trainer import ModelTrainer
 from src.logger import logging
-
-config = ConfigurationManager()
 
 def data_ingestion_pipeline():
     """
     Runs the data ingestion steps: download and extract.
     """
     try:
+        config = ConfigurationManager()
         data_ingestion_config = config.get_data_ingestion_config()
         data_ingestion = DataIngestion(data_ingestion_config)
-        data_ingestion.download_file()
+        #data_ingestion.download_file()
         data_ingestion.extract_zip_file()
     except Exception as e:
         logging.error(f"An error occurred during data ingestion: {e}")
@@ -24,6 +24,7 @@ def data_validation_pipeline():
     Runs the data validation steps.
     """
     try:
+        config = ConfigurationManager()
         data_validation_config = config.get_data_validation_config()
         data_validation = DataValidation(config=data_validation_config)
         data_validation.validate_all_data_files()
@@ -36,11 +37,25 @@ def data_transformation_pipeline():
     Runs the data transformation steps.
     """
     try:
+        config = ConfigurationManager()
         data_transformation_config = config.get_data_transformation_config()
         data_transformation = DataTransformation(data_transformation_config)
         data_transformation.convert()
     except Exception as e:
         logging.error(f"An error occurred during data transformation: {e}")
+        raise e
+
+def model_trainer_pipeline():
+    """
+    Runs the model training steps.
+    """
+    try:
+        config = ConfigurationManager()
+        model_training_config = config.get_model_trainer_config()
+        model_trainer = ModelTrainer(model_training_config)
+        model_trainer.train()
+    except Exception as e:
+        logging.error(f"An error occurred during model training: {e}")
         raise e
 
 def run_pipeline():
@@ -56,7 +71,11 @@ def run_pipeline():
     data_transformation_pipeline()
     logging.info("Data transformation pipeline completed successfully.")
 
-if __name__ == "__main__":
-    #run_pipeline()
-    data_transformation_pipeline()
+    logging.info("Starting model training pipeline...")
+    model_trainer_pipeline()
+    logging.info("Model training pipeline completed successfully.")
 
+if __name__ == "__main__":
+    logging.info("Starting model training pipeline...")
+    model_trainer_pipeline()
+    logging.info("Model training pipeline completed successfully.")

@@ -1,6 +1,6 @@
 from src.utils import read_yaml, create_directories
 from src.logger import logging
-from src.entity import DataIngestionConfig, DataValidationConfig, DataTransformationConfig
+from src.entity import DataIngestionConfig, DataValidationConfig, DataTransformationConfig, ModelTrainerConfig
 
 
 class ConfigurationManager:
@@ -40,6 +40,16 @@ class ConfigurationManager:
             tokenizer_name = config.tokenizer_name
         )
         return data_transformation_config
+
+    def get_model_trainer_config(self) -> ModelTrainerConfig:
+        config = self.config.model_trainer
+
+        model_trainer_config = ModelTrainerConfig(
+            root_dir = config.root_dir,
+            data_path = config.data_path,
+            model_ckpt = config.model_ckpt
+        )
+        return model_trainer_config
 
 
 

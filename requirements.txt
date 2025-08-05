@@ -1,4 +1,5 @@
 transformers[sentencepiece]
+transformers==4.40.1
 datasets
 sacrebleu
 rouge_score
