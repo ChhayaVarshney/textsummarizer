@@ -76,6 +76,4 @@ def run_pipeline():
     logging.info("Model training pipeline completed successfully.")
 
 if __name__ == "__main__":
-    logging.info("Starting model training pipeline...")
-    model_trainer_pipeline()
-    logging.info("Model training pipeline completed successfully.")
+    run_pipeline()
