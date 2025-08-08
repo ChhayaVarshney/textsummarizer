@@ -30,15 +30,14 @@ class ModelTrainer:
             per_device_eval_batch_size=1,
             weight_decay=0.01,
             logging_steps=10,                    
-            evaluation_strategy="steps",
-            eval_steps=500,                       
-            save_steps=10,                      
+            save_steps=500,          
+            save_total_limit=2,                       
             gradient_accumulation_steps=1
         )
 
         trainer = Trainer(
             model=model_pegasus, args=trainer_args, tokenizer=tokenizer, data_collator=seq2seq_data_collator,
-            train_dataset=dataset_samsum_pt["test"], eval_dataset=dataset_samsum_pt["validation"]
+            train_dataset=dataset_samsum_pt["train"], eval_dataset=dataset_samsum_pt["validation"]
         )
 
         trainer.train()
