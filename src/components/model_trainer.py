@@ -47,12 +47,3 @@ class ModelTrainer:
         model_pegasus.save_pretrained(os.path.join(self.config.root_dir, "pegasus_samsum_model"))
         tokenizer.save_pretrained(os.path.join(self.config.root_dir, "tokenizer"))
         logging.info("Model and tokenizer saved successfully")
-
-
-if __name__ == "__main__":
-    logging.info("Starting model training pipeline...")
-    config = ConfigurationManager()
-    model_trainer = ModelTrainer(config)
-    model_trainer.train()
-    logging.info("Model training pipeline completed successfully.")
-
