@@ -20,3 +20,13 @@ model_trainer:
     root_dir : artifacts
     data_path : artifacts/dataset
     model_ckpt : google/pegasus-cnn_dailymail
+
+model_unzip:
+    root_dir : artifacts
+    local_data_file : artifacts/model_backup.zip
+    unzip_dir : artifacts
+
+tokenizer_unzip:
+    root_dir : artifacts
+    local_data_file : artifacts/tokenizer_backup.zip
+    unzip_dir : artifacts
