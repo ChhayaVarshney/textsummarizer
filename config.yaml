@@ -21,12 +21,9 @@ model_trainer:
     data_path : artifacts/dataset
     model_ckpt : google/pegasus-cnn_dailymail
 
-model_unzip:
+model_evaluation:
     root_dir : artifacts
-    local_data_file : artifacts/model_backup.zip
-    unzip_dir : artifacts
-
-tokenizer_unzip:
-    root_dir : artifacts
-    local_data_file : artifacts/tokenizer_backup.zip
-    unzip_dir : artifacts
+    data_path : artifacts/dataset
+    model_path : artifacts/pegasus_samsum_model
+    tokenizer_path : artifacts/tokenizer
+    metric_file_name : artifacts/metrics.csv

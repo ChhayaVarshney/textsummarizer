@@ -24,3 +24,11 @@ class ModelTrainerConfig:
     root_dir : str
     data_path : str
     model_ckpt : str
+
+@dataclass
+class ModelEvaluationConfig:
+    root_dir : str
+    data_path : str
+    model_path : str
+    tokenizer_path : str
+    metric_file_name : str

@@ -3,6 +3,7 @@ from src.components.data_ingestion import DataIngestion
 from src.components.data_validation import DataValidation
 from src.components.data_transformation import DataTransformation
 from src.components.model_trainer import ModelTrainer
+from src.components.model_evaluation import ModelEvaluation
 from src.logger import logging
 
 def data_ingestion_pipeline():
@@ -57,6 +58,19 @@ def model_trainer_pipeline():
     except Exception as e:
         logging.error(f"An error occurred during model training: {e}")
         raise e
+    
+def model_evauation_pipeline():
+    """
+    Runs the model evaluation steps.
+    """
+    try:
+        config = ConfigurationManager()
+        model_evaluation_config = config.get_model_evaluation_config()
+        model_evaluation = ModelEvaluation(model_evaluation_config)
+        model_evaluation.evaluate()
+    except Exception as e:
+        logging.error(f"An error occurred during model evaluation: {e}")
+        raise e
 
 def run_pipeline():
     logging.info("Starting data ingestion pipeline...")
@@ -75,7 +89,11 @@ def run_pipeline():
     model_trainer_pipeline()
     logging.info("Model training pipeline completed successfully.")
 
+    logging.info("Starting model evaluation pipeline...")
+    model_evauation_pipeline()
+    logging.info("Model evaluation pipeline completed successfully.")
+
 if __name__ == "__main__":
-    logging.info("Starting model training pipeline...")
-    model_trainer_pipeline()
-    logging.info("Model training pipeline completed successfully.")
+    logging.info("Starting model evaluation pipeline...")
+    model_evauation_pipeline()
+    logging.info("Model evaluation pipeline completed successfully.")
