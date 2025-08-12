@@ -30,7 +30,7 @@ class ModelTrainer:
             per_device_eval_batch_size=1,
             weight_decay=0.01,
             logging_steps=10,    
-            evaluation_strategy="steps",
+            eval_strategy="steps",
             eval_steps=500,                
             save_steps=1000,          
             save_total_limit=2,                      

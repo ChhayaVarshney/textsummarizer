@@ -94,6 +94,4 @@ def run_pipeline():
     logging.info("Model evaluation pipeline completed successfully.")
 
 if __name__ == "__main__":
-    logging.info("Starting model evaluation pipeline...")
-    model_evauation_pipeline()
-    logging.info("Model evaluation pipeline completed successfully.")
+    run_pipeline()
